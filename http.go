@@ -11,6 +11,7 @@ import (
 
 	webrtc "github.com/deepch/vdk/format/webrtcv3"
 	"github.com/gin-gonic/gin"
+	"github.com/gin-contrib/cors"
 )
 
 type JCodec struct {
@@ -19,6 +20,7 @@ type JCodec struct {
 
 func serveHTTP() {
 	router := gin.Default()
+	router.Use(cors.Default())
 	router.LoadHTMLGlob("web/templates/*")
 	router.GET("/", HTTPAPIServerIndex)
 	router.GET("/stream/player/:uuid", HTTPAPIServerStreamPlayer)
